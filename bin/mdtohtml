@@ -6,12 +6,14 @@ def mdtohtml(file)
 	markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
 	out_file_content = markdown.render(File.read(file))
 
-	out_file = File.basename(file, '.*') + '.html'
+	basename = File.basename(file, '.*')
+	out_file = basename + '.html'
 	fp = File.open(out_file, "w")
 
 	fp.write('
 		<html>
 			<head>
+				<title>' + basename + '</title>
 				<link rel="stylesheet" href="https://raw.githubusercontent.com/sindresorhus/github-markdown-css/gh-pages/github-markdown.css">
 				<style>
 					.markdown-body {
