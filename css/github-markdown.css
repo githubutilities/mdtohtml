@@ -1,0 +1,14 @@
+/*
+ * import github-markdown-css from sindresorhus
+ */
+@import url("https://raw.githubusercontent.com/sindresorhus/github-markdown-css/gh-pages/github-markdown.css");
+
+/*
+ * overwriting markdown-body css
+ */
+.markdown-body {
+	min-width: 200px;
+	max-width: 650px;
+	margin: 0 auto;
+	padding: 30px;
+}
