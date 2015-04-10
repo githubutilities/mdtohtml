@@ -1,0 +1,44 @@
+#!/usr/bin/env ruby
+
+require 'redcarpet'
+
+def mdtohtml(file)
+	markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+	out_file_content = markdown.render(File.read(file))
+
+	out_file = File.basename(file, '.*') + '.html'
+	fp = File.open(out_file, "w")
+
+	fp.write('
+		<html>
+			<head>
+				<link rel="stylesheet" href="https://raw.githubusercontent.com/sindresorhus/github-markdown-css/gh-pages/github-markdown.css">
+				<style>
+					.markdown-body {
+						min-width: 200px;
+						max-width: 790px;
+						margin: 0 auto;
+						padding: 30px;
+					}
+				</style>
+			</head>
+			<body>
+				<article class="markdown-body">')
+	fp.write(out_file_content)
+	fp.write('
+				</article>
+			</body>
+		</html>')
+	# close the file to save the changes
+	fp.close
+end
+
+if ARGV[0] && File.exists?(file = ARGV[0])
+	mdtohtml(file)
+else
+  puts "usage: #$0 FILE"
+end
+
+
+
+
