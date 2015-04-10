@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name              = "mdtohtml"
-  s.version           = '0.0.3'
+  s.version           = '0.0.4'
   s.date              = '2015-04-10'
   s.summary           = "Convert Markdown to HTML."
   s.homepage          = "https://github.com/githubutilities/mdtohtml"

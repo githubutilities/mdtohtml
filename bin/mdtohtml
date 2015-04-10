@@ -3,7 +3,7 @@
 require 'redcarpet'
 
 def mdtohtml(file)
-	markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+	markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, fenced_code_blocks: true, autolink: true, tables: true)
 	out_file_content = markdown.render(File.read(file))
 
 	basename = File.basename(file, '.*')
@@ -11,26 +11,20 @@ def mdtohtml(file)
 	fp = File.open(out_file, "w")
 
 	fp.write('
-		<html>
-			<head>
-				<title>' + basename + '</title>
-				<link rel="stylesheet" href="https://raw.githubusercontent.com/sindresorhus/github-markdown-css/gh-pages/github-markdown.css">
-				<style>
-					.markdown-body {
-						min-width: 200px;
-						max-width: 790px;
-						margin: 0 auto;
-						padding: 30px;
-					}
-				</style>
-			</head>
-			<body>
-				<article class="markdown-body">')
+<html>
+	<head>
+		<title>' + basename + '</title>
+		<link rel="stylesheet" href="https://raw.githubusercontent.com/githubutilities/mdtohtml/master/css/github-markdown.css">
+	</head>
+	<body>
+		<article class="markdown-body">'
+		)
 	fp.write(out_file_content)
 	fp.write('
-				</article>
-			</body>
-		</html>')
+		</article>
+	</body>
+</html>'
+		)
 	# close the file to save the changes
 	fp.close
 end
