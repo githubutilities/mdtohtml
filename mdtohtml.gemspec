@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name              = "mdtohtml"
-  s.version           = '0.0.4'
+  s.version           = '0.0.5'
   s.date              = '2015-04-10'
   s.summary           = "Convert Markdown to HTML."
   s.homepage          = "https://github.com/githubutilities/mdtohtml"
@@ -15,5 +15,5 @@ Gem::Specification.new do |s|
   s.description       = "Util for converting Markdown to HTML."
   s.license           = 'MIT'
 
-  s.add_development_dependency 'redcarpet', '~> 3.0.0'
+  s.add_runtime_dependency 'redcarpet', '~> 3.0', '>= 3.0.0'
 end

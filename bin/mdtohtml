@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'redcarpet'
+require 'open-uri'
 
 def mdtohtml(file)
 	markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, fenced_code_blocks: true, autolink: true, tables: true)
@@ -9,12 +10,16 @@ def mdtohtml(file)
 	basename = File.basename(file, '.*')
 	out_file = basename + '.html'
 	fp = File.open(out_file, "w")
+	css_url = 'https://raw.githubusercontent.com/githubutilities/mdtohtml/master/css/github-markdown.css'
+	css_style = open(css_url).read
 
 	fp.write('
 <html>
 	<head>
 		<title>' + basename + '</title>
-		<link rel="stylesheet" href="https://raw.githubusercontent.com/githubutilities/mdtohtml/master/css/github-markdown.css">
+		<style>
+' + css_style + '
+		</style>
 	</head>
 	<body>
 		<article class="markdown-body">'
